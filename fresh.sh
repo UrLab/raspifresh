@@ -7,11 +7,18 @@ fi
 
 user_home=$(eval echo ~$SUDO_USER)
 
-sudo apt update && sudo apt full-upgrade
-sudo apt install vim git python3
+if [[ -z "$1" ]]; then
+	sudo apt update && sudo apt full-upgrade
+	sudo apt install vim git python3
+else
+	sudo apt update && sudo apt full-upgrade -y
+	sudo apt install vim git python3 -y
+fi	
+
 sudo ln -s /bin/vim /bin/v
 sudo apt purge nano
 sudo ln -s /bin/vim /bin/nano
+
 
 git clone https://github.com/urlab/config-files.git
 cp config-files/.vimrc $user_home/.vimrc
