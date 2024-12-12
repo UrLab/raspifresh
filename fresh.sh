@@ -7,12 +7,17 @@ fi
 
 user_home=$(eval echo ~$SUDO_USER)
 
+# All useful packages not installed by default
+packages="vim git python3 curl nmap g++ make python3-pip ffmpeg htop btop wget zip unzip gpg neofetch tar pass"
+
 if [[ -z "$1" ]]; then
 	sudo apt update && sudo apt full-upgrade
-	sudo apt install vim git python3
+	for package in $packages; do
+		sudo apt install $package
+	done
 else
 	sudo apt update && sudo apt full-upgrade -y
-	sudo apt install vim git python3 -y
+	sudo apt install -y $packages
 fi	
 
 sudo ln -s /bin/vim /bin/v
@@ -25,4 +30,6 @@ cp config-files/.vimrc $user_home/.vimrc
 cp config-files/.bashrc $user_home/.bashrc
 cp config-files/.bash_aliases $user_home/.bash_aliases
 rm -rf config-files
+
+neofetch
 
