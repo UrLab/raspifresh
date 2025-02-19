@@ -21,7 +21,7 @@ else
 fi	
 
 sudo ln -s /bin/vim /bin/v
-sudo apt purge nano
+sudo apt purge nano -y
 sudo ln -s /bin/vim /bin/nano
 
 
